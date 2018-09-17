@@ -1,0 +1,21 @@
+<h1>Update Weapon Info</h1>
+ <form id="updating" method="post" action="/{{weapons.wid}}">
+       <input type="hidden" name="wid" value="{{weapons.wid}}" />
+	  <fieldset>
+       <label>Name:</label>
+       <input type="text" name="name" value="{{weapons.name}}" />
+       </fieldset>
+	   <br \>
+	   <fieldset>
+       <label>Category:</label>
+       <input type="text" name="category" value="{{weapons.category}}" />
+       </fieldset>
+	   <br \>
+		<fieldset>
+       <label>Price:</label>
+       <input type="number" name="price" value="{{weapons.price}}" />
+	<br \>
+       </fieldset>
+	   <br \>
+       <input type="submit" value="update" /><br \>
+     </form>

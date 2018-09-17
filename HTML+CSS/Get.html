@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="UTF-8">
+  <title>title</title>
+  <link rel="stylesheet" href="stylesheet.css" type="text/css">
+ </head>
+ <body>
+  <form action="http://classes.engr.oregonstate.edu/eecs/winter2015/cs290-400/tools/class-content/form_tests/check_request.php" method="get">
+   <fieldset>
+    <legend>Enter your OSU login information to take a quick survey</legend>
+	 <label>Name:
+	  <input type="text" name="text_input" size="30" maxlength="100">
+     </label>
+   </fieldset>
+   <fieldset>
+	 <label>Password:
+	  <input type="password" name="password_input" size="30" maxlength="8">
+	  </label>
+   </fieldset>
+   <fieldset>
+ 	 <label>Rate how you feel about OSU from a scale of 1 to 10:
+	  <input type="number" name="numerical_input" size="30" maxlength="2">
+	 </label>
+   </fieldset>
+   <fieldset>
+	<p>Pick your favorite candy:</p>
+	<ul>
+	<li><label>
+	 <input type="radio" name="candy" value="Snickers" />Snickers
+	</label></li>
+	<li><label>
+	 <input type="radio" name="candy" value="Skittles" />Skittles
+	</label></li>
+	<li><label>
+	 <input type="radio" name="candy" value="Mentos" />Mentos
+	</label></li>
+    <input type="submit" value="Submit" />
+   </fieldset>
+  </form> 
+ </body>
+</html>

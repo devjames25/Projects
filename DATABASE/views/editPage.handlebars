@@ -1,0 +1,25 @@
+<h1>Workout Edit Page</h1>
+
+<form id={{this.id}} method="get" action="/update" style="display:none">
+       <input type="hidden" name="id" value={{this.id}} />
+       <label>Name:
+       <input type="text" name="name" value={{this.name}} />
+       </label><br>
+       <label>Reps:
+       <input type="number" name="reps" value={{this.reps}} min="0" />
+       </label><br>
+       <label>Weight:
+       <input type="number" name="weight" value={{this.weight}} min="0" />
+       </label><br>
+       <label>Date:
+       <input type="date" name="date" value={{this.date}}/>
+       </label><br>
+       <label>Lbs:
+       <input type="number" name="lbs" value=({{this.lbs}}) min="0" max="1"/>
+       </label><br>
+       <button type="submit" name="button1">submit</button><br>
+     </form>
+
+<script>
+    console.log("Edit page");
+</script>

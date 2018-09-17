@@ -1,0 +1,34 @@
+<h1>Update Alien's Info</h1>
+ <form id="updating" method="post" action="/{{alien.aid}}">
+       <input type="hidden" name="aid" value="{{alien.aid}}" />
+	  <fieldset>
+       <label>Species:</label>
+       <input type="text" name="species" value="{{alien.species}}" />
+       </fieldset>
+	   <br \>
+	   <fieldset>
+       <label>Description:</label>
+       /<input type="text" name="description" value="{{alien.description}}" />
+       </fieldset>
+	   <br \>
+		<fieldset>
+       <label>Favorite Food:</label>
+       <select name="fav_food">
+	   {{#each food}}
+	    <option value="{{cid}}">{{name}}</option>
+	   {{/each}}
+    </select>
+	<br \>
+       </fieldset>
+	   <br \>
+	   <fieldset>
+       <label>Weakness:</label>
+       <select name="weakness">
+	    {{#each weapons}}
+	     <option value="{{wid}}">{{name}}</option>
+	    {{/each}}
+    </select>
+       </fieldset>
+	   <br \>
+       <input type="submit" value="update" /><br \>
+     </form>

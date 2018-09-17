@@ -1,0 +1,43 @@
+body {
+	background-color:#ffbf00;
+}
+
+h1 {
+	color:yellow;
+	background-color:tomato;
+	font-size:50px;
+}
+
+h2 {
+	color:yellow;
+	background-color:tomato;
+	font-size:40px;
+}
+
+h3 {
+	color:black;
+	font-size:25px;
+}
+
+ul {
+	display:table;
+	margin:0 auto;
+	list-style:none;
+}
+
+#Essay {
+	border:3px dashed tomato;
+	font-size:20px;
+}
+
+#menuBox {
+    background-color:yellow;
+	color:tomato;
+	height:150px; 
+	width:150px; 
+	overflow:auto; 
+	border:10px groove tomato;
+	margin-left:70%;
+	text-align:center;
+	font-size:20px;
+}

@@ -1,0 +1,89 @@
+ <h1>Farming Database</h1>
+  <h3>Enter Farming information to include in the database</h3> 
+ <form method="get" action="/insert">
+   <fieldset>
+    <legend>Farmer</legend>
+	<p>Name<input type="text" name="name" /></p>
+   </fieldset>
+   <fieldset>
+    <legend>Equipment</legend>
+	<p>Select which tool you use the most</p>
+	<ul>
+	 <li><input type="radio" name="plow" value="Plow"/>Plow</li>
+	 <li><input type="radio" name="pitchfork" value="Pitchfork"/>Pitchfork</li>
+	 <li><input type="radio" name="hoe" value="Hoe"/>Hoe</li>
+	 <li><input type="radio" name="rake" value="Rake"/>Rake</li>
+	</ul>
+   </fieldset>
+   <fieldset>
+    <legend>Crops</legend>
+	<p>Select which crop you harvest the most</p>
+	<ul>
+	 <li><input type="radio" name="bamboo" value="Bamboo"/>Bamboo</li>
+	 <li><input type="radio" name="corn" value="Corn"/>Corn</li>
+	 <li><input type="radio" name="wheat" value="Wheat"/>Wheat</li>
+	 <li><input type="radio" name="lavender" value="Lavender"/>Lavender</li>
+	 <li><input type="radio" name="herbs" value="Herbs"/>Herbs</li>
+	 <li><input type="radio" name="garlic" value="Garlic"/>Garlic</li>
+	</ul>
+   </fieldset>
+   <fieldset>
+    <legend>Score</legend>
+	<input type="number" name="score" min="1.0" max="5.0"/>
+   </fieldset>
+   <input type="submit" name="add" value="Submit"/>
+  </form>
+  
+  <br />
+<table id="farmer">
+ <thead>
+	 <tr>
+      <th>Name</th>
+      <th>Equipment</th>
+	  <th>Crops</th>
+	  <th>Score</th>
+	  <th>Edit</th>
+	  <th>Delete</th>
+	 </tr>
+ </thead>
+ <tbody>
+    {{#each results}}     
+      <tr>
+       <td>{{this.name}}</td>
+       <td>{{this.equipment}}</td>
+       <td>{{this.crops}}</td>                            
+       <td>{{this.score}</td>
+        
+      <td>
+	 <form id={{this.id}} method="get" action="/update" style="display:none">
+       <input type="hidden" name="id" value={{this.id}} />
+       <label>Name:
+       <input type="text" name="name" value={{this.name}} />
+       </label><br>
+       <label>Equipment:
+       <input type="text" name="equipment" value={{this.equipment}} />
+       </label><br>
+       <label>Crops:
+       <input type="text" name="crops" value={{this.crops}} />
+       </label><br>
+       <label>Score:
+       <input type="number" name="score" value={{this.score}} min="1.0" max="5.0"/>
+       </label><br>
+       <button type="submit" name="button1">submit</button><br>
+     </form>
+   	   <button type="button" onclick="editButton({{this.id}})">edit</button>
+       <script>document.getElementById({{this.id}}.style.display="none"></script>
+	  </td>
+         
+      <td> 
+	   <form method="get" action="/delete">
+        <input type="hidden" name="id" value={{this.id}} />
+        <button type="submit" name="button2">delete</button>
+       </form>
+      </td>
+     </tr>
+    {{/each}}	
+ </tbody>
+</table>
+   
+   

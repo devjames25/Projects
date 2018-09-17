@@ -1,0 +1,35 @@
+<h1>Update Farmer's Info</h1>
+ <form id="updating" method="post" action="/{{farmer.sfid}}">
+       <input type="hidden" name="sfid" value="{{farmer.sfid}}" />
+	  <fieldset>
+       <label>Name:</label>
+       <input type="text" name="fname" value="{{farmer.fname}}" />
+	   <input type="text" name="lname" value="{{farmer.lname}}" />
+       </fieldset>
+	   <br \>
+	   <fieldset>
+       <label>Experience:</label>
+       <input type="number" name="experience" value="{{farmer.experience}}" />
+       </fieldset>
+	   <br \>
+		<fieldset>
+       <label>Homeworld:</label>
+       <select name="homeworld">
+	   {{#each planets}}
+	    <option value="{{pid}}">{{name}}</option>
+	   {{/each}}
+    </select>
+	<br \>
+       </fieldset>
+	   <br \>
+	   <fieldset>
+       <label>Favorite Weapon:</label>
+       <select name="fav_weapon">
+	    {{#each weapons}}
+	     <option value="{{wid}}">{{name}}</option>
+	    {{/each}}
+    </select>
+       </fieldset>
+	   <br \>
+       <input type="submit" value="update" /><br \>
+     </form>

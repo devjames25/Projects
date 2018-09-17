@@ -1,0 +1,13 @@
+.outer-content{
+	background-color:pink;
+	padding:20px;
+	position:relative;
+	width:75%;
+}  
+
+.inner-content{
+	background-color:blue;
+	background-position:center;
+	width:75%;
+	text-align:center;
+}

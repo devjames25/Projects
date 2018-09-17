@@ -1,0 +1,21 @@
+<h1>Update Crop's Info</h1>
+ <form id="updating" method="post" action="/{{food.cid}}">
+       <input type="hidden" name="cid" value="{{food.cid}}" />
+	  <fieldset>
+       <label>Name:</label>
+       <input type="text" name="name" value="{{food.name}}" />
+       </fieldset>
+	   <br \>
+	   <fieldset>
+       <label>Price</label>
+       <input type="number" name="price" step="0.01" value="{{food.price}}" />
+       </fieldset>
+	   <br \>
+		<fieldset>
+       <label>Quantity:</label>
+       <input type="number" name="quantity" value="{{food.quantity}}" />
+	<br \>
+       </fieldset>
+	   <br \>
+       <input type="submit" value="update" />
+     </form>

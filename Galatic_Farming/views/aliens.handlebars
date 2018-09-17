@@ -1,0 +1,126 @@
+<h1>Alien Database</h1>
+  <h3>Enter information about an alien to include it in the database</h3> 
+ <form action="/addAlien" method="post">
+   <fieldset>
+    <legend>Species</legend>
+	<p>Name<input type="text" name="species" /></p>
+   </fieldset>
+   <fieldset>
+    <legend>Description</legend>
+	<p>Short summary<input type="text" name="description" /></p>
+   </fieldset>
+   <fieldset>
+    <legend>Favorite Food</legend>
+	<p>Which food does the alien enjoy eating?</p>
+	<select name="fav_food">
+	 {{#each food}}
+	  <option value="{{cid}}">{{name}}</option>
+	 {{/each}}
+    </select>
+   </fieldset>
+   <fieldset>
+    <legend>Favorite Weapon</legend>
+	<p>Which weapon is the alien weak against?</p>
+	<select name="weakness">
+	 {{#each weapons}}
+	   <option value="{{wid}}">{{name}}</option>
+	 {{/each}}
+    </select>
+   </fieldset>
+   <input type="submit" value="Submit"/>
+  </form>
+  
+  <br>
+<table id="alien">
+ <thead>
+	 <tr>
+      <th>Species</th>
+      <th>Description</th>
+	  <th>Favorite Food</th>
+	  <th>Weakness</th>
+	  <th>Edit</th>
+	  <th>Delete</th>
+	 </tr>
+ </thead>
+ <tbody>
+    {{#each results}}     
+      <tr>
+       <td>{{this.species}}</td>
+	   <td>{{this.description}}</td>
+       <td>{{this.fav_food}}</td>
+       <td>{{this.weakness}}</td>                            
+      <td>
+   	   <a href="/updateAlien/{{this.aid}}">Edit</a>
+	  </td>
+      <td>
+	  <form method="get" action="/delAlien">
+        <input type="hidden" name="aid" value={{this.aid}} />
+        <button id="delButton" type="submit">Delete</button>
+       </form>
+	  </td>
+     </tr>
+    {{/each}}	
+ </tbody>
+</table>
+   
+ <h3>Select which table you would like to view</h3>
+ <ul>
+  <li value="farmer"><a href="/viewFarmers">Space Farmer</a></li>
+  <li value="planet"><a href="/viewPlanets">Planet</a></li>
+  <li value="crops"><a href="/viewCrops">Crops</a></li>
+  <li value="weapon"><a href="/viewWeapons">Weapon</a></li>
+  <li value="index"><a href="/">Index</a></li>
+ </ul>
+ 
+ <script type="text/javascript">
+  function del(){
+	var id = this.id;
+	var req = new XMLHttpRequest();
+	var url = "http://flip3.engr.oregonstate.edu:2534/delAlien?id=";
+	req.open("GET", url + id, true);
+			req.addEventListener("load", function(){
+			if(req.status >= 200 && req.status < 400){
+				var node = document.getElementById(id);
+				if(node.parentNode){
+					node.parentNode.removeChild(node);
+				}
+			}
+			else{
+				console.log("Error in network request");
+			}
+		});
+		req.send(JSON.stringify(req.responseText));
+		event.preventDefault();
+}
+
+document.getElementById("delButton").addEventListener("click", deleteRow);
+
+
+function deleteRow(tableID,currentRow) {
+    try {
+        var table = document.getElementById(tableID);
+        var rowCount = table.rows.length;
+        for (var i = 0; i < rowCount; i++) {
+            var row = table.rows[i];
+            
+            if (row==currentRow.parentNode.parentNode) {
+                if (rowCount <= 1) {
+                    alert("Cannot delete all the rows.");
+                    break;
+                }
+                table.del(i);
+                rowCount--;
+                i--;
+            }
+        }
+    } catch (e) {
+        alert(e);
+    }
+}
+ </script>
+ 
+   
+   
+
+   
+   

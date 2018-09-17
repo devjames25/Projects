@@ -1,0 +1,21 @@
+<h1>Update Planet's Info</h1>
+ <form id="updating" method="post" action="/{{planets.pid}}">
+       <input type="hidden" name="pid" value="{{planets.pid}}" />
+	  <fieldset>
+       <label>Name:</label>
+       <input type="text" name="name" value="{{planets.name}}" />
+       </fieldset>
+	   <br \>
+	   <fieldset>
+       <label>Solar System:</label>
+       <input type="text" name="solar_system" value="{{planets.solar_system}}" />
+       </fieldset>
+	   <br \>
+		<fieldset>
+       <label>Population:</label>
+       <input type="number" name="population" value="{{planets.population}}" />
+	<br \>
+       </fieldset>
+	   <br \>
+       <input type="submit" value="update" /><br \>
+     </form>

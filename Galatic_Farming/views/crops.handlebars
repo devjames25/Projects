@@ -1,0 +1,109 @@
+<h1>Space Crop Database</h1>
+ <h3>Enter food information here</h3>
+  <form method="post" action="/addCrop">
+  <fieldset>
+    <legend>Crop Name</legend>
+	<p>Name<input type="text" name="name" /></p>
+   </fieldset>
+  <fieldset>
+    <legend>Price</legend>
+	<p>Amount<input type="number" step="0.01" name="price" /></p>
+   </fieldset>
+   <fieldset>
+    <legend>Quantity</legend>
+	<p>Amount<input type="number" name="quantity" min="1" /></p>
+   </fieldset>
+   <input type="submit" value="Submit" />
+ </form>
+ <br>
+ 
+ <table id="crops">
+  <thead>
+	 <tr>
+      <th>Name</th>
+      <th>Price</th>
+	  <th>Quantity</th>
+	  <th>Edit</th>
+	  <th>Delete</th>
+	 </tr>
+ </thead>
+ <tbody>
+    {{#each results}}     
+      <tr>
+       <td>{{this.name}}</td>
+	   <td>{{this.price}}</td>
+       <td>{{this.quantity}}</td>
+      <td>
+   	   <a href="/updateCrop/{{this.cid}}">Edit</a>
+	  </td>
+      <td>
+	  <form method="get" action="/delCrops">
+        <input type="hidden" name="cid" value={{this.cid}} />
+        <button id="delButton" type="submit">Delete</button>
+       </form>
+	  </td>
+     </tr>
+    {{/each}}	
+ </tbody>
+</table>
+
+<h3>Select which table you would like to view</h3>
+ <ul>
+  <li value="farmer"><a href="/viewFarmers">Space Farmer</a></li>
+  <li value="planet"><a href="/viewPlanets">Planet</a></li>
+  <li value="index"><a href="/">Index</a></li>
+  <li value="weapon"><a href="/viewWeapons">Weapon</a></li>
+  <li value="aliens"><a href="/viewAliens">Aliens</a></li>
+ </ul>
+ 
+ <script type="text/javascript">
+  function del(){
+	var id = this.id;
+	var req = new XMLHttpRequest();
+	var url = "http://flip3.engr.oregonstate.edu:2534/delCrops?id=";
+	req.open("GET", url + id, true);
+			req.addEventListener("load", function(){
+			if(req.status >= 200 && req.status < 400){
+				var node = document.getElementById(id);
+				if(node.parentNode){
+					node.parentNode.removeChild(node);
+				}
+			}
+			else{
+				console.log("Error in network request");
+			}
+		});
+		req.send(JSON.stringify(req.responseText));
+		event.preventDefault();
+}
+
+document.getElementById("delButton").addEventListener("click", deleteRow);
+
+
+function deleteRow(tableID,currentRow) {
+    try {
+        var table = document.getElementById(tableID);
+        var rowCount = table.rows.length;
+        for (var i = 0; i < rowCount; i++) {
+            var row = table.rows[i];
+            
+            if (row==currentRow.parentNode.parentNode) {
+                if (rowCount <= 1) {
+                    alert("Cannot delete all the rows.");
+                    break;
+                }
+                table.del(i);
+                rowCount--;
+                i--;
+            }
+        }
+    } catch (e) {
+        alert(e);
+    }
+}
+ </script>
+ 
+   
+   
+
+ 
